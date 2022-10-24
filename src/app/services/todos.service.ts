@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
-import { BehaviorSubject, map, Observable } from 'rxjs'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { BehaviorSubject, catchError, EMPTY, map, Observable, throwError } from 'rxjs'
 import { environment } from '../../environments/environment'
+import { BeatyLoggerService } from './beaty-logger.service'
 
 export interface Todo {
   id: string
@@ -29,11 +30,12 @@ export class TodosService {
     },
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private beatyLoggerService: BeatyLoggerService) {}
 
   getTodos() {
     return this.http
       .get<Todo[]>(`${environment.baseUrl}/todo-lists`, this.httpOptions)
+      .pipe(catchError(this.errorHandler.bind(this)))
       .subscribe(todos => {
         this.todos$.next(todos)
       })
@@ -47,6 +49,7 @@ export class TodosService {
         this.httpOptions
       )
       .pipe(
+        catchError(this.errorHandler.bind(this)),
         map(res => {
           const newTodo = res.data.item
           const stateTodos = this.todos$.getValue()
@@ -62,6 +65,7 @@ export class TodosService {
     return this.http
       .delete<BaseResponse>(`${environment.baseUrl}/todo-lists/${todoId}`, this.httpOptions)
       .pipe(
+        catchError(this.errorHandler.bind(this)),
         map(() => {
           return this.todos$.getValue().filter(tl => tl.id !== todoId)
         })
@@ -69,5 +73,10 @@ export class TodosService {
       .subscribe(todos => {
         this.todos$.next(todos)
       })
+  }
+
+  private errorHandler(err: HttpErrorResponse) {
+    this.beatyLoggerService.log(err.message, 'error')
+    return EMPTY
   }
 }
