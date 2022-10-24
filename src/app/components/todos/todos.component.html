@@ -1,5 +1,9 @@
-<div *ngFor="let todo of todos">
-  <p class="container">{{ todo.id }} --- {{ todo.title }} --- {{ todo.order }}</p>
-</div>
-<button (click)="createTodo()">Create</button>
-<button (click)="deleteTodo()">Delete</button>
+<h2 *ngIf="!!error; else content">{{ error }}</h2>
+
+<ng-template #content>
+  <div *ngFor="let todo of todos">
+    <p class="container">{{ todo.id }} --- {{ todo.title }} --- {{ todo.order }}</p>
+  </div>
+  <button (click)="createTodo()">Create</button>
+  <button (click)="deleteTodo()">Delete</button>
+</ng-template>
