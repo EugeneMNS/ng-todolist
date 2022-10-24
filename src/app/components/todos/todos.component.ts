@@ -31,7 +31,7 @@ export class TodosComponent implements OnInit {
   }
 
   deleteTodo() {
-    const todoId = 'de08be6b-0f0c-4710-9f21-656b487244d0'
+    const todoId = '5560c4a0-344e-4c96-8619-9f1b670aa906'
     this.todosService.deleteTodo(todoId).subscribe(() => {
       this.todos = this.todos.filter(tl => tl.id !== todoId)
     })
