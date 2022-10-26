@@ -19,7 +19,6 @@
   align-items: center;
   justify-content: space-between;
   width: 300px;
-  border: 1px solid black;
   padding: 5px;
   border-radius: 44px;
   box-shadow: #2d2a2a 0px 0px 5px;
@@ -32,6 +31,7 @@
   height: 100%;
   border-radius: 44px;
   height: 30px;
+  background: transparent;
 }
 
 .todos-box {
