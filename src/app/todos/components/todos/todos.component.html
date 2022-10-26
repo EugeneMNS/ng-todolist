@@ -4,8 +4,11 @@
 </div>
 
 <div class="todos-input">
-  <input class="input" type="text" placeholder="Add new Todo" [(ngModel)]="todoTitle" />
-  <button (click)="addTodoHandler()">+</button>
+  <div class="input-wrapper">
+  <input class="input" type="text" placeholder="Add new Todo" [(ngModel)]="todoTitle" (keyup.enter)="addTodoHandler()">
+  <button class="cleanButton" *ngIf="todoTitle" (click)="todoTitle=''">X</button>
+  </div>
+  <button class="addTodoButton" (click)="addTodoHandler()"> Add Todo </button>
 </div>
 
 <div class="todos-box">
