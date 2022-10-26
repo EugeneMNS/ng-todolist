@@ -1,14 +1,15 @@
 <div class="box">
-  <button [ngClass]="{ completed: filter === 'active' }" (click)="changeFilterHandler('active')">
+  <button class="btnActive" [ngClass]="{ completed: filter === 'active' }" (click)="changeFilterHandler('active')">
     Active
   </button>
   <button
+    class="btnCompleted"
     [ngClass]="{ completed: filter === 'completed' }"
     (click)="changeFilterHandler('completed')"
   >
     Completed
   </button>
-  <button [ngClass]="{ completed: filter === 'all' }" (click)="changeFilterHandler('all')">
+  <button class="btnAll" [ngClass]="{ completed: filter === 'all' }" (click)="changeFilterHandler('all')">
     All
   </button>
 </div>

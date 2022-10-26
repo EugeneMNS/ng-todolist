@@ -62,9 +62,9 @@
   align-items: center;
 }
 
-.removeTaskButton {
+.removeTodoButton {
   align-items: center;
-  background-color: #a42828;
+  background-color: #e30101;
   border: 0;
   border-radius: 100px;
   box-sizing: border-box;
@@ -92,8 +92,8 @@
   box-shadow: #2d2a2a 0px 0px 5px;
 }
 
-.removeTaskButton:hover,
-.removeTaskButton:focus {
-  background-color: #e30101;
+.removeTodoButton:hover,
+.removeTodoButton:focus {
+  background-color: #a42828;
   color: #ffffff;
 }
